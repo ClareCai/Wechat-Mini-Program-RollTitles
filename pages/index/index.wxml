@@ -1,23 +1,21 @@
 <!--index.wxml-->
 <view class="container">
-  <view class="userinfo">
-    <block wx:if="{{canIUseOpenData}}">
-      <view class="userinfo-avatar" bindtap="bindViewTap">
-        <open-data type="userAvatarUrl"></open-data>
-      </view>
-      <open-data type="userNickName"></open-data>
-    </block>
-    <block wx:elif="{{!hasUserInfo}}">
-      <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> 获取头像昵称 </button>
-      <button wx:elif="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-      <view wx:else> 请使用1.4.4及以上版本基础库 </view>
-    </block>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
+  <view class="preview">
+    <view
+      class="preview-text"
+      style="font-size: {{fontSize}};color:{{fontColor}}"
+    >{{previewText}}</view>
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view>
+  <t-input
+    model:value="{{previewText}}"
+    placeholder="请输入文字"
+    borderless="{{true}}"
+    class="text-input"
+  />
+  <t-radio-group t-class="horizontal-box" value="{{fontSize}}" bind:change="onChange">
+    <view wx:for="{{fontSizeList}}" wx:key="id" class="card {{fontSize == item.id ? 'card--active' : ''}}">
+      <t-icon wx:if="{{fontSize == item.id}}" name="check" t-class="card__icon" />
+      <t-radio value="{{item.id}}" label="{{item.value}}" icon="none" borderless />
+    </view>
+  </t-radio-group>
 </view>
