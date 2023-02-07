@@ -2,7 +2,7 @@
 <view class="play-container" style="background-color:{{playParams.backgroundColor}};" bindtap="onViewClick">
   <view
     class="play-text"
-    style="font-size: {{playParams.fontSize * 4}}rpx;color:{{playParams.fontColor}};animation-duration:{{playParams.rollSpeed}}s;"
+    style="font-size: {{playParams.fontSize * 6}}rpx;color:{{playParams.fontColor}};animation-duration:{{playParams.rollSpeed}}s;"
   >
     {{playParams.rollTitles}}
   </view>
