@@ -139,5 +139,12 @@ Page({
         res.eventChannel.emit('acceptDataFromOpenerPage', data)
       }
     })
+  },
+  onShareAppMessage () {
+    return {
+      title: '滚动字幕工具',
+      path: '/pages/index/index',
+      imageUrl: ''
+    }
   }
 })
