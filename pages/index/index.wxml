@@ -1,21 +1,50 @@
 <!--index.wxml-->
 <view class="container">
-  <view class="preview">
-    <view
-      class="preview-text"
-      style="font-size: {{fontSize}};color:{{fontColor}}"
-    >{{previewText}}</view>
-  </view>
-  <t-input
-    model:value="{{previewText}}"
-    placeholder="请输入文字"
-    borderless="{{true}}"
-    class="text-input"
-  />
-  <t-radio-group t-class="horizontal-box" value="{{fontSize}}" bind:change="onChange">
-    <view wx:for="{{fontSizeList}}" wx:key="id" class="card {{fontSize == item.id ? 'card--active' : ''}}">
-      <t-icon wx:if="{{fontSize == item.id}}" name="check" t-class="card__icon" />
-      <t-radio value="{{item.id}}" label="{{item.value}}" icon="none" borderless />
+  <view class="preview-container">
+    <view class="preview" style="background-color:{{backgroundColor}};">
+      <view
+        wx:if="{{showPreview}}"
+        class="preview-text"
+        style="font-size: {{fontSize}}rpx;color:{{fontColor}};"
+      >{{previewText}}</view>
     </view>
-  </t-radio-group>
+    <t-input
+      model:value="{{rollTitles}}"
+      placeholder="请输入文字"
+      borderless="{{true}}"
+      class="text-input"
+      bind:enter="onInputEnter"
+    />
+    <view class="select-title">
+      字体大小
+    </view>
+    <t-radio-group t-class="horizontal-box" value="{{fontSize}}" bind:change="onSizeChange">
+      <view wx:for="{{fontSizeList}}" wx:key="id" class="card {{fontSize == item.id ? 'card--active' : ''}}">
+        <t-icon wx:if="{{fontSize == item.id}}" name="check" t-class="card__icon" />
+        <t-radio value="{{item.id}}" label="{{item.label}}" icon="none" borderless />
+      </view>
+    </t-radio-group>
+    <view class="select-title">
+      字体颜色
+    </view>
+    <t-radio-group t-class="horizontal-box" value="{{fontColor}}" bind:change="onColorChange">
+      <view wx:for="{{fontColorList}}" wx:key="id" class="card color-card {{fontColor == item.id ? 'card--active' : ''}}">
+        <t-icon wx:if="{{fontColor == item.id}}" name="check" t-class="card__icon" />
+        <t-radio value="{{item.id}}" icon="none" borderless style="background-color:{{item.id}};" />
+      </view>
+    </t-radio-group>
+    <view class="select-title">
+      背景颜色
+    </view>
+    <t-radio-group t-class="horizontal-box" value="{{backgroundColor}}" bind:change="onBackgroundColorChange">
+      <view wx:for="{{fontColorList}}" wx:key="id" class="card color-card {{backgroundColor == item.id ? 'card--active' : ''}}">
+        <t-icon wx:if="{{backgroundColor == item.id}}" name="check" t-class="card__icon" />
+        <t-radio value="{{item.id}}" icon="none" borderless style="background-color:{{item.id}};" />
+      </view>
+    </t-radio-group>
+  </view>
+  <view class="btn-container">
+    <t-button theme="primary" size="large" variant="outline" bind:tap="onResetClick">重置</t-button>
+    <t-button theme="primary" size="large" bind:tap="onPlayClick">播放</t-button>
+  </view>
 </view>
