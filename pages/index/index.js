@@ -6,10 +6,18 @@ Page({
   data: {
     rollTitles: '',
     previewText: 'Hello World',
+    rollSpeed: '8',
     fontSize: '36',
     fontColor: '#FF0000',
     backgroundColor: '#000000',
     showPreview: true,
+    speedList: {
+      0: '4',
+      25: '6',
+      50: '8',
+      75: '10',
+      100: '12'
+    },
     fontSizeList: [
       {
         id: '32',
@@ -72,6 +80,14 @@ Page({
       }
     ]
   },
+  onSpeedChange (e) {
+    const value = this.data.speedList[e.detail.value]
+    if(this.data.rollSpeed !== value) {
+      this.setData({ showPreview: false })
+      this.setData({ rollSpeed: value })
+      this.setData({ showPreview: true })
+    }
+  },
   onSizeChange(e) {
     this.setData({ showPreview: false })
     this.setData({ fontSize: e.detail.value })
@@ -95,7 +111,8 @@ Page({
   onResetClick () {
     this.setData({ showPreview: false })
     this.setData({ previewText: 'Hello World' })
-    this.setData({ fontSize: '36' })
+      this.setData({ rollSpeed: '8' })
+      this.setData({ fontSize: '36' })
     this.setData({ rollTitles: '' })
     this.setData({ fontColor: '#FF0000' })
     this.setData({ backgroundColor: '#000000' })
@@ -109,6 +126,7 @@ Page({
       })
     }
     const data = {
+      rollSpeed: this.data.rollSpeed,
       fontSize: this.data.fontSize,
       rollTitles: this.data.rollTitles,
       fontColor: this.data.fontColor,

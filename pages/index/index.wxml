@@ -5,7 +5,7 @@
       <view
         wx:if="{{showPreview}}"
         class="preview-text"
-        style="font-size: {{fontSize}}rpx;color:{{fontColor}};"
+        style="font-size: {{fontSize}}rpx;color:{{fontColor}};animation-duration:{{rollSpeed}}s;"
       >{{previewText}}</view>
     </view>
     <t-input
@@ -15,6 +15,10 @@
       class="text-input"
       bind:enter="onInputEnter"
     />
+    <view class="select-title">
+      滚动速度
+    </view>
+    <t-slider defaultValue="{{50}}" marks="{{speedList}}" step="{{25}}" theme="capsule" bind:change="onSpeedChange" />
     <view class="select-title">
       字体大小
     </view>

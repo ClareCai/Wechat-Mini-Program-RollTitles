@@ -2,9 +2,9 @@
 <view class="play-container" style="background-color:{{playParams.backgroundColor}};" bindtap="onViewClick">
   <view
     class="play-text"
-    style="font-size: {{playParams.fontSize * 4}}rpx;color:{{playParams.fontColor}};"
+    style="font-size: {{playParams.fontSize * 4}}rpx;color:{{playParams.fontColor}};animation-duration:{{playParams.rollSpeed}}s;"
   >
     {{playParams.rollTitles}}
   </view>
-  <t-button wx:if="{{showBtn}}" size="large" variant="outline" class="back-btn" bind:tap="onBackClick">返回</t-button>
+  <t-button wx:if="{{showBtn}}" theme="primary" size="large" class="back-btn" bind:tap="onBackClick">返回</t-button>
 </view>
